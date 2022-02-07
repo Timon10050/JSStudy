@@ -11,9 +11,10 @@ console.log(typeof adaptive);
 
 console.log(screens.length);
 
-console.log('Стоимость верстки экранов +' screenPrice '+ юаней')
+console.log("Стоимость верстки экранов" + " " + screenPrice + " " + "юаней.");
 
+console.log("Стоимость разработки сайта" + " " + fullPrice + " " + "юаней.");
 
 alert("Начало положено!");
 
-console.log ("hello js!");
+console.log("hello js!");
