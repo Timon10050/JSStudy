@@ -15,6 +15,8 @@ console.log("Стоимость верстки экранов" + " " + screenPri
 
 console.log("Стоимость разработки сайта" + " " + fullPrice + " " + "юаней.");
 
-alert("Начало положено!");
+console.log(screens.toLowerCase());
 
-console.log("hello js!");
+console.log(screens.split(", "));
+
+console.log("Процент отката посреднику за работу" + " " + fullPrice * (rollback/100));
