@@ -1,9 +1,17 @@
-const title = 0,
-      screens = 0,
-      screenPrice = 0,
-      rollback = 0,
-      fullPrice = 0,
-      adaptive = 0;
+let title = 'Название проекта';
+let screens = 'Простые, Сложные, Интерактивные';
+let screenPrice = 487;
+let rollback = 35;
+let fullPrice = 10000000;
+let adaptive = true;
+
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
+
+console.log(screens.length);
+
+console.log('Стоимость верстки экранов +' screenPrice '+ юаней')
 
 
 alert("Начало положено!");
