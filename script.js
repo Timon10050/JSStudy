@@ -9,31 +9,48 @@ let service1 = prompt('Какой дополнительный тип услуг
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice2 = +prompt('Сколько это будет стоить?');
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = Math.ceil((fullPrice - fullPrice * (rollback / 100)));
 
-if (fullPrice > 30000) {
-    console.log('Даем скидку 10%');
-} else if (fullPrice >= 15000 && fullPrice < 30000) {
-    console.log('Даем скидку в 5%');
-} else if (fullPrice >= 0 && fullPrice < 15000) {
-    console.log('Скидка не предусмотрена');
-} else {
-    console.log('Что-то пошло не так!');
+const getAllServicePrices = function (servicePr, servicePr1) {
+    return servicePr + servicePr1;
+};
+
+function getFullPrice(screen, allservice) {
+    return screen + allservice;
 }
 
-//console.log(typeof title, fullPrice, adaptive);
-//console.log(typeof fullPrice);
-//console.log(typeof adaptive);
+function getTitle() {
+    title = title.trim();
+    return title[0].toUpperCase + title.slice(1).toLowerCase;
+}
 
-console.log(screens.length);
+function getServicePercentPrices(persen, overPrise) {
+    return Math.ceil(overPrise - overPrise * (persen / 100));
+}
 
-console.log("Стоимость верстки экранов" + " " + screenPrice + " " + "юаней.");
+const showTypeOf = function (variable) {
+    return typeof variable;
+};
 
-console.log("Стоимость разработки сайта" + " " + fullPrice + " " + "юаней.");
+const getRollbackMessage = function (price) {
+    if (price > 30000) {
+        return 'Даем скидку 10%';
+    } else if (price >= 15000 && fullPrice < 30000) {
+        return 'Даем скидку в 5%';
+    } else if (price >= 0 && fullPrice < 15000) {
+        return 'Скидка не предусмотрена';
+    } else {
+        return 'Что-то пошло не так!';
+    }
+};
 
-console.log(screens.toLowerCase());
+let allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+let fullPrice = getFullPrice(screenPrice, allServicePrices);
+let servicePercentPrice = getServicePercentPrices(rollback, fullPrice);
+title = getTitle();
 
-console.log(screens.split(", "));
-
-console.log("Процент отката посреднику за работу" + " " + fullPrice * (rollback / 100));
+console.log(showTypeOf(title));
+console.log(showTypeOf(screenPrice));
+console.log(showTypeOf(adaptive));
+console.log(screens.toLowerCase().split(", "));
+console.log(getRollbackMessage(fullPrice));
+console.log("Процент отката посреднику за работу" + " " + servicePercentPrice);
