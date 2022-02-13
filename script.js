@@ -5,14 +5,22 @@ let screens = prompt('Какие типы экранов нужно разраб
 let screenPrice = +prompt('Сколько будет стоить данная работа?', 12000);
 let rollback = 387;
 let adaptive = confirm('Нужен ли адаптив на сайте?');
+
+
 let service1 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice2 = +prompt('Сколько это будет стоить?');
 
-const getAllServicePrices = function (servicePr, servicePr1) {
-    return servicePr + servicePr1;
-};
+const getAllServicePrices = function () {
+    let sum = 0;
+
+    for (let i > 0; i < 2; i++) {
+        sum += +prompt('Сколько это будет стоить?');
+    }
+    return sum;
+    //return servicePr + servicePr1;
+}
 
 function getFullPrice(screen, allservice) {
     return screen + allservice;
