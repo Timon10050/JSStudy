@@ -1,26 +1,46 @@
 'use strict';
 
-let title = prompt('Как называется ваш проект?');
-let screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
-let screenPrice = +prompt('Сколько будет стоить данная работа?', 12000);
+let title;
+let screens;
+let screenPrice;
 let rollback = 387;
-let adaptive = confirm('Нужен ли адаптив на сайте?');
+let adaptive;
+let service1;
+let service2;
 
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+};
 
-let service1 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice1 = +prompt('Сколько это будет стоить?');
-let service2 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice2 = +prompt('Сколько это будет стоить?');
+const getPrise = function (str, value) {
+    let num;
+    do {
+        num = prompt(str, value);
+    } while (!isNumber(num));
+
+    return +num;
+};
+
+const asking = function () {
+    title = prompt('Как называется ваш проект?');
+    screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
+    screenPrice = getPrise('Сколько будет стоить данная работа?');
+    adaptive = confirm('Нужен ли адаптив на сайте?');
+};
 
 const getAllServicePrices = function () {
     let sum = 0;
 
-    for (let i > 0; i < 2; i++) {
-        sum += +prompt('Сколько это будет стоить?');
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            service1 = prompt('Какой дополнительный тип услуги нужен?');
+        } else if (i === 1) {
+            service2 = prompt('Какой дополнительный тип услуги нужен?');
+        }
+        sum += getPrise('Сколько это будет стоить?');
     }
-    return sum;
-    //return servicePr + servicePr1;
-}
+    return isNumber(sum);
+};
 
 function getFullPrice(screen, allservice) {
     return screen + allservice;
@@ -51,7 +71,8 @@ const getRollbackMessage = function (price) {
     }
 };
 
-let allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+asking();
+let allServicePrices = getAllServicePrices();
 let fullPrice = getFullPrice(screenPrice, allServicePrices);
 let servicePercentPrice = getServicePercentPrices(rollback, fullPrice);
 title = getTitle();
