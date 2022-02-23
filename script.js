@@ -1,21 +1,33 @@
 'use strict';
+
 const appData = {
     title: '',
     screens: '',
     screenPrice: 0,
-    rollback: 387,
+    rollback: 13,
     adaptive: true,
-    service1: '',
-    service2: '',
+    services: {},
+    allServicePrices: 0,
+    fullPrice: 0,
+    servicePercentPrice: 0,
+
+    start: function () {
+        appData.asking();
+        appData.getAllServicePrices();
+        appData.getFullPrice();
+        appData.getServicePercentPrices();
+        appData.getTitle();
+        appData.logger();
+    },
 
     isNumber: function (num) {
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
 
-    getPrise: function (str, value) {
+    getPrise: function () {
         let num;
         do {
-            num = prompt(str, value);
+            num = prompt();
         } while (!appData.isNumber(num));
 
         return +num;
@@ -26,33 +38,39 @@ const appData = {
         appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
         appData.screenPrice = appData.getPrise('Сколько будет стоить данная работа?');
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
+
+        for (let i = 0; i < 2; i++) {
+            let name = prompt('Какой дополнительный тип услуги нужен?');
+            let prise = 0;
+
+            do {
+                prise = prompt('Сколько это будет стоить?');
+            } while (!appData.isNumber(prise));
+
+            appData.services[name] = +prise;
+        }
+        //appData.allServicePrices =  appData.isNumber(sum);
+
     },
 
     getAllServicePrices: function () {
-        let sum = 0;
 
-        for (let i = 0; i < 2; i++) {
-            if (i === 0) {
-                appData.service1 = prompt('Какой дополнительный тип услуги нужен?');
-            } else if (i === 1) {
-                appData.service2 = prompt('Какой дополнительный тип услуги нужен?');
-            }
-            sum += appData.getPrise('Сколько это будет стоить?');
+        for (let key in appData.services) {
+            appData.getAllServicePrices += appData.services[key];
         }
-        return appData.isNumber(sum);
+
     },
 
-    getFullPrice: function (screen, allservice) {
-        return screen + allservice;
+    getFullPrice: function () {
+        appData.fullPrice = appData.screenPrice + appData.allServicePrices;
     },
 
-    getTitle: function (title) {
-        title = title.trim();
-        return title[0].toUpperCase + title.slice(1).toLowerCase;
+    getTitle: function () {
+        appData.title = appData.title.trim()[0].toUpperCase + appData.title.slice(1).toLowerCase;
     },
 
-    getServicePercentPrices: function (persen, overPrise) {
-        return Math.ceil(overPrise - overPrise * (persen / 100));
+    getServicePercentPrices: function () {
+        appData.servicePercentPrice = Math.ceil(appData.fullPrice - appData.fullPrice * (appData.rollback / 100));
     },
 
     showTypeOf: function (variable) {
@@ -71,18 +89,10 @@ const appData = {
         }
     },
 
-    start: function () {
-        appData.asking();
-        appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
-        appData.servicePercentPrice = appData.getServicePercentPrices(appData.rollback, appData.fullPrice);
-        appData.logger();
-
-    },
     logger: function () {
-        console.log(appData.showTypeOf(appData.title));
-        console.log(appData.showTypeOf(appData.fullPrice));
-        console.log(appData.showTypeOf(appData.adaptive));
+        //console.log(appData.showTypeOf(appData.title));
+        //console.log(appData.showTypeOf(appData.fullPrice));
+        //console.log(appData.showTypeOf(appData.adaptive));
         console.log(appData.screens.toLowerCase().split(", "));
         console.log(appData.getRollbackMessage(appData.fullPrice));
         console.log("Процент отката посреднику за работу" + " " + appData.servicePercentPrice);
