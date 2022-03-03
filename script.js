@@ -1,4 +1,28 @@
 'use strict';
+// заголовок через тэг h1
+const screenTitle = document.getElementsByTagName('h1')[0];
+// кнопки Расчитать и Сброс по классу
+const btnCalculate = document.getElementsByClassName('handler_btn')[0];
+const btnCancel = document.getElementsByClassName('handler_btn')[1];
+// кнопочка "+"  через querySelector по классу 
+const btnAddScreen = document.querySelector('.screen-btn');
+// получаем other-items сперва percent 
+const otherItemsPercent = document.querySelectorAll('.other-items.percent');
+const otherItemsNumber = document.querySelectorAll('.other-items.number');
+// получаем одним запросом inpute type=range через rollback
+const rollbackInput = document.querySelector('.rollback input');
+// получаем span с классом range-value через его родителя с классом rollback одним запросом
+const rollbackSpan = document.querySelector('.rollback .range-value');
+// получаем все инпуты с классом total-input 
+const totalInput = document.getElementsByClassName('total-input');
+
+for (let elem of totalInput) {
+    console.log(elem);
+}
+
+// получаем все блоки  с классом screen в изменzемую переменную let
+let screenBlocks = document.querySelectorAll('.screen');
+
 
 const appData = {
     title: '',
