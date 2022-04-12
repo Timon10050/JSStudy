@@ -1,30 +1,26 @@
-const books = document.querySelectorAll('.book');
-const backgraund = document.querySelector('body');
-const change = books[4].querySelector('h2 > a');
-const adv = document.querySelector('.adv');
-const li2 = books[0].querySelectorAll('li');
-const li5 = books[5].querySelectorAll('li');
-const book6 = books[2].querySelectorAll('li');
-const clone = book6[0].cloneNode(true);
+'use strict';
 
-books[2].before(books[4]);
-books[0].before(books[1]);
-books[4].after(books[3]);
-books[2].before(books[5]);
+const btn = document.getElementById('btn');
+const btn2 = document.getElementById('e_btn');
+const input = document.getElementById('text');
+const range = document.getElementById('range');
+const range_span = document.getElementById('range-span');
+const square = document.getElementById('square');
+const circle = document.getElementById('circle');
 
-backgraund.style.backgroundImage = 'url(./image/you-dont-know-js.jpg)';
+function changeColor() {
+    let color = input.value;
+    square.style.backgroundColor = color;
+}
 
-change.textContent = 'Книга 3. this и Прототипы Объектов';
+function changeSettings() {
+    let num = range.value;
+    range_span.textContent = num;
+    circle.style.width = `${num}%`;
+    circle.style.height = `${num}%`;
+}
 
-adv.remove();
+btn.addEventListener('click', changeColor);
+range.addEventListener('input', changeSettings);
 
-li2[10].before(li2[2]);
-li2[4].before(li2[6]);
-li2[4].before(li2[8]);
-
-li5[2].before(li5[9]);
-li5[5].before(li5[2]);
-li5[8].before(li5[5]);
-
-clone.textContent = 'Глава 8: За пределами ES6';
-book6[8].append(clone);
+btn2.style.display = "none";
