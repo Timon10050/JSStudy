@@ -13,7 +13,7 @@ const buttonReset = document.getElementsByClassName('handler_btn')[1];
 const total = document.getElementsByClassName('total-input')[0];
 const totalCount = document.getElementsByClassName('total-input')[1];
 const totalCountOther = document.getElementsByClassName('total-input')[2];
-const fullTOtalCount = document.getElementsByClassName('total-input')[3];
+const fullTotalCount = document.getElementsByClassName('total-input')[3];
 const totalCountRollback = document.getElementsByClassName('total-input')[4];
 
 let blockScreen = document.querySelectorAll('.screen');
@@ -47,7 +47,7 @@ const appData = {
         total.value = appData.screenPrice;
         totalCount.value = appData.screensQuantity;
         totalCountOther.value = appData.servicePricesNumber + appData.servicePricesPercent;
-        fullTOtalCount.value = appData.fullPrice;
+        fullTotalCount.value = appData.fullPrice;
         totalCountRollback.value = appData.servicePercentPrice;
     },
 
